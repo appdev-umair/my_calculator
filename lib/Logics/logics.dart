@@ -281,9 +281,9 @@ void setAnswer(String expression) {
     // now concate according to conditions
     if ((leftOp == "+" || leftOp == "-") &&
         (rightOp == "+" || rightOp == "-" || rightOp == "")) {
-      expression = "$leftHalf$leftOp($num/100*($leftHalf))";
+      expression = "$leftHalf$leftOp*($num/100*($leftHalf))";
     } else {
-      expression = "$leftHalf$leftOp($num/100)";
+      expression = "$leftHalf$leftOp*($num/100)";
     }
     if (rightOp != "") {
       expression = expression + rightOp + rightHalf;
@@ -310,6 +310,7 @@ void setAnswer(String expression) {
       ScreenWidget.ans.value = '';
     }
   } catch (e) {
+    print(e);
     ScreenWidget.ans.value = '';
   }
 }

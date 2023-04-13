@@ -43,8 +43,18 @@ class _ScreenState extends State<Screen> {
       appBar: AppBar(
         title: const Text("My Calculator"),
       ),
-      body: Column(
-        children: [const ScreenWidget(), ButtonWidget()],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: OrientationBuilder(builder: (context, orientation) {
+          if (orientation == Orientation.portrait) {
+            return Column(
+              children: [const ScreenWidget(), ButtonWidget()],
+            );
+          }
+          return Row(
+            children: [const ScreenWidget(), ButtonWidget()],
+          );
+        }),
       ),
     );
   }
