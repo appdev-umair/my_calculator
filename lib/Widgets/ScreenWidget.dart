@@ -27,23 +27,53 @@ class ScreenWidget extends StatelessWidget {
                         valueListenable: expression,
                         builder: (BuildContext context,
                             TextEditingController expression, Widget) {
-                          return Expanded(
-                              child: Column(
+                          return Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              AutoSizeTextField(
-                                controller: expression,
-                                style: const TextStyle(fontSize: 70),
-                                minFontSize: 40,
-                                stepGranularity: 10,
-                                keyboardType: TextInputType.none,
-                                textAlign: TextAlign.right,
-                                scrollController: scrollController,
-                                focusNode: myFocusNode,
-                                decoration: const InputDecoration(
-                                    border: InputBorder.none),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: AutoSizeTextField(
+                                  controller: expression,
+                                  style: const TextStyle(fontSize: 70),
+                                  minFontSize: 20,
+                                  stepGranularity: 10,
+                                  keyboardType: TextInputType.none,
+                                  textAlign: TextAlign.right,
+                                  scrollController: scrollController,
+                                  focusNode: myFocusNode,
+                                  decoration: const InputDecoration(
+                                    enabled: true,
+                                    focusColor: Colors.deepPurple,
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20)),
+                                        borderSide: BorderSide(
+                                            color: Colors.deepPurple,
+                                            width: 2)),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20)),
+                                        borderSide: BorderSide(
+                                            color: Colors.deepPurple,
+                                            width: 2)),
+                                    disabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20)),
+                                        borderSide: BorderSide(
+                                            color: Colors.deepPurple,
+                                            width: 2)),
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20)),
+                                        borderSide: BorderSide(
+                                            color: Colors.deepPurple,
+                                            width: 2)),
+                                  ),
+                                ),
                               ),
-                              SizedBox(
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SizedBox(
                                   width: MediaQuery.of(context).size.width,
                                   child: ValueListenableBuilder(
                                     valueListenable: ans,
@@ -55,9 +85,11 @@ class ScreenWidget extends StatelessWidget {
                                             fontSize: 40, color: Colors.grey),
                                       );
                                     },
-                                  )),
+                                  ),
+                                ),
+                              ),
                             ],
-                          ));
+                          );
                         });
                   });
             }),

@@ -68,7 +68,8 @@ class Button {
         if (_textBeforeCursor.endsWith('+') ||
             _textBeforeCursor.endsWith('–') ||
             _textBeforeCursor.endsWith('×') ||
-            _textBeforeCursor.endsWith('÷')) {
+            _textBeforeCursor.endsWith('÷') ||
+            _textBeforeCursor.endsWith('.')) {
           return;
         }
         _textAfterCursor = ScreenWidget.expression.value.text
@@ -255,18 +256,17 @@ void setAnswer(String expression) {
 
     // for getting number with which % occur
     i--;
-    if (i != 0) {
-      while (i >= 0 &&
-          expression[i] != "+" &&
-          expression[i] != "-" &&
-          expression[i] != "/" &&
-          expression[i] != "*") {
-        num = expression[i] + num;
-        i--;
-      }
+
+    while (i >= 0 &&
+        expression[i] != "+" &&
+        expression[i] != "-" &&
+        expression[i] != "/" &&
+        expression[i] != "*") {
+      num = expression[i] + num;
+      i--;
     }
     if (num.isEmpty) {
-      num = "1";
+      num = '1';
     }
     // for getting left operator of % and remaining expression left side of %
     String leftOp = "";
@@ -281,9 +281,9 @@ void setAnswer(String expression) {
     // now concate according to conditions
     if ((leftOp == "+" || leftOp == "-") &&
         (rightOp == "+" || rightOp == "-" || rightOp == "")) {
-      expression = "$leftHalf$leftOp*($num/100*($leftHalf))";
+      expression = "$leftHalf$leftOp($num/100*($leftHalf))";
     } else {
-      expression = "$leftHalf$leftOp*($num/100)";
+      expression = "$leftHalf$leftOp($num/100)";
     }
     if (rightOp != "") {
       expression = expression + rightOp + rightHalf;
@@ -310,7 +310,6 @@ void setAnswer(String expression) {
       ScreenWidget.ans.value = '';
     }
   } catch (e) {
-    print(e);
     ScreenWidget.ans.value = '';
   }
 }
